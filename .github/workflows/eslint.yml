@@ -40,19 +40,28 @@ jobs:
         run: |
             echo "##[set-output name=result;]$(cat ./eslint_report.json )"
             
-      - name: Slack Notification
-        shell: bash
-        run: |
+#       - name: Slack Notification
+#         shell: bash
+#         run: |
             
-                if [[ $(cat ./eslint_report.json | jq '.[].errorCount')  > 0  ||   $(cat ./eslint_report.json | jq '.[].warningCount') > 0 ]] ; then
-                outText="\n Eslint Result : \n\t errorCount : "$(cat ./eslint_report.json | jq  '.[].errorCount')"\n\t \
-                warningCount : "$(cat ./eslint_report.json | jq '.[].warningCount' )""
-                curl -d "{\"channel\":\"${{secrets.SLACK_CHANNEL_NAME}}\",\"text\":\"$outText\"}" \
-                -H "Content-Type:application/json;charset=utf-8" \
-                -H "Authorization:Bearer "${{secrets.SLACK_API_TOKEN}} \
-                -X POST "https://slack.com/api/chat.postMessage"
-                fi
-            
-                
-      - run: npm test
+#                 if [[ $(cat ./eslint_report.json | jq '.[].errorCount')  > 0  ||   $(cat ./eslint_report.json | jq '.[].warningCount') > 0 ]] ; then
+#                 outText="\n Eslint Result : \n\t errorCount : "$(cat ./eslint_report.json | jq  '.[].errorCount')"\n\t \
+#                 warningCount : "$(cat ./eslint_report.json | jq '.[].warningCount' )""
+#                 curl -d "{\"channel\":\"${{secrets.SLACK_CHANNEL_NAME}}\",\"text\":\"$outText\"}" \
+#                 -H "Content-Type:application/json;charset=utf-8" \
+#                 -H "Authorization:Bearer "${{secrets.SLACK_API_TOKEN}} \
+#                 -X POST "https://slack.com/api/chat.postMessage"
+#                 fi
+#       - run: npm test
+      
+#        - if: ${{steps.polaris_scan}}
+#         name: Polaris Severity Issues
+#         id: polaris_result
+#         run: |
+#           #cat ./.synopsys/polaris/cli-scan.json | jq '.issueSummary'
+#           echo "##[set-output name=critical;]$(cat ./.synopsys/polaris/cli-scan.json | jq '.issueSummary.issuesBySeverity.critical' )"
+#           echo "##[set-output name=high;]$(cat ./.synopsys/polaris/cli-scan.json | jq '.issueSummary.issuesBySeverity.high' )"
+#           echo "##[set-output name=medium;]$(cat ./.synopsys/polaris/cli-scan.json | jq '.issueSummary.issuesBySeverity.medium' )"
+#           echo "##[set-output name=low;]$(cat ./.synopsys/polaris/cli-scan.json | jq '.issueSummary.issuesBySeverity.low' )"   
+      
     
