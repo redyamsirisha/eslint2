@@ -6,6 +6,7 @@ on:
       - main
 env:
   CI: true
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 jobs:
   pr:
     name: "PR for merge to: '${{github.base_ref}}'"
@@ -16,6 +17,7 @@ jobs:
         with:
           node-version: '10.x'
           registry-url: 'https://registry.npmjs.org'
+    
       - run: npm cache clean --force    
       - run: npm install
       - run: npm run build
