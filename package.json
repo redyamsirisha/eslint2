@@ -5,26 +5,30 @@
 "description": "Node.js on Docker",
 "author": "First Last <first.last@example.com>",
 "main": "server.js",
-"scripts": {
+"scripts":,
+  {
 "test": "jest --",
 "coverage": "jest --collectCoverage --"
-},
-"dependencies": {
+ },
+"dependencies": 
+  {
 "express": "^4.16.1",
 "mkdirp": "^1.0.4",
 "strip-ansi": "^5.2.0",
 "uuid": "^3.3.3",
 "xml": "^1.0.1"
-},
-"devDependencies": {
+ },
+"devDependencies":
+ {
 "libxmljs": "^0.19.7",
 "jest": "^24.9.0",
 "jest-junit": "^10.0.0"
 },
-"jest-junit": {
+"jest-junit":
+ {
 "outputDirectory": "test_reports",
 "outputName": "jest-junit.xml"
-}
+ }
 }
 {
   "name": "backend-template",
